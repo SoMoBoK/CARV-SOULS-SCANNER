@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CARV Soul Scanner</title>
+  <style>
+    body { font-family: Arial; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+    #walletAddress { font-weight: bold; }
+    .container { max-width: 400px; text-align: center; }
+    button { padding: 10px 20px; margin: 10px; font-size: 16px; cursor: pointer; }
+    #score { font-size: 22px; margin-top: 15px; font-weight: bold; color: #333; }
+    #aiInsight { margin-top: 15px; font-size: 16px; font-style: italic; white-space: pre-line; }
+  </style>
+</head>
+<body>
+  
+  <img src="carv-logo.png" width="140" />
+
+  <div class="container">
+    <h2>CARV Soul Scanner</h2>
+
+    <button onclick="connectWallet()">Connect Wallet</button>
+    <p id="walletAddress"></p>
+
+    <button onclick="scanSoul()">Scan Soul</button>
+
+    <p id="score"></p>
+    <p id="aiInsight"></p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
