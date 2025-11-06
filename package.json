@@ -1,0 +1,11 @@
+{
+  "name": "carv-souls-scanner",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "CARV Soul Scanner hybrid build with CashieCarv insights",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {}
+}
