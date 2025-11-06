@@ -1,0 +1,10 @@
+{
+  "name": "carv-souls-scanner",
+  "version": "1.0.0",
+  "description": "CARV Soul Scanner powered by OpenAI",
+  "main": "app.js",
+  "type": "module",
+  "dependencies": {
+    "openai": "^4.68.4"
+  }
+}
