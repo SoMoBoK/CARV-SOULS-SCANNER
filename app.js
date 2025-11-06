@@ -1,85 +1,65 @@
-// app.js — CARV Soul Scanner hybrid version
-// Connects to Backpack or Metamask + generates local AI-style insights
+let walletAddress = null;
+let soulPoints = null;
+let insight = null;
 
-const connectBtn = document.getElementById("connectWallet");
-const scanBtn = document.getElementById("scanSoul");
-const walletInfo = document.getElementById("walletInfo");
-const soulPoints = document.getElementById("soulPoints");
-const insightEl = document.getElementById("insight");
-const shareBtn = document.getElementById("shareX");
-
-let walletAddress = "";
-let soulScore = 0;
-
-// Local random AI-style insights
-const localInsights = [
-  "Your data sparkles with rare potential — keep going.",
-  "You’re building something the future will remember.",
-  "The on-chain winds favor those who listen to their code.",
-  "Your digital aura hums with creative energy.",
-  "You are one commit away from greatness.",
-  "The CARVverse feels your frequency rising.",
-  "Your blockchain footprint whispers of legend.",
-  "Sovereignty suits your soul — you were made for this.",
-  "A data storm brews… and you’re at its calm center.",
-  "Your energy syncs with the rhythm of innovation.",
-  "Your code resonates beyond the blockchain.",
-  "Your soul emits a strong decentralization signal.",
-  "You radiate sovereign intelligence.",
-  "The network remembers those who build with intent.",
-  "A new layer of you has been minted — unique and eternal.",
-  "CARV sees potential in your sovereignty.",
-  "Your essence aligns with the next AI epoch.",
-  "Each scan refines your digital being.",
-  "There’s light in your ledger.",
-  "Your soul score is more than numbers — it’s proof of becoming."
-];
-
-// Connect wallet logic (Backpack first, fallback to MetaMask)
-connectBtn.addEventListener("click", async () => {
+document.getElementById("connectWallet").addEventListener("click", async () => {
   try {
-    if (window.backpack) {
-      const response = await window.backpack.connect();
-      walletAddress = response.publicKey.toString();
-      walletInfo.innerText = `Backpack: ${walletAddress}`;
-    } else if (window.ethereum) {
-      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-      walletAddress = accounts[0];
-      walletInfo.innerText = `MetaMask: ${walletAddress}`;
-    } else {
-      walletInfo.innerText = "No compatible wallet found.";
-      alert("Install Backpack or MetaMask to continue.");
-      return;
-    }
-  } catch (error) {
-    console.error(error);
-    walletInfo.innerText = "Wallet connection failed.";
+    // Simulated wallet connection
+    walletAddress = "E4HsDYuBfnaASS6692YVBvZYH5jmMucM1rN8pF8f1veM"; // Example only
+    document.getElementById("walletDisplay").textContent = `Backpack: ${maskWallet(walletAddress)}`;
+  } catch (err) {
+    console.error("Wallet connection failed", err);
   }
 });
 
-// Scan Soul logic (generates score + random insight)
-scanBtn.addEventListener("click", async () => {
+document.getElementById("scanSoul").addEventListener("click", async () => {
   if (!walletAddress) {
-    alert("Connect your wallet first!");
+    alert("Please connect your wallet first!");
     return;
   }
 
-  // Random soul score
-  soulScore = Math.floor(Math.random() * 1000) + 100;
+  const carvUID = document.getElementById("carvUID").value.trim();
+  document.getElementById("soulReport").innerHTML = "🔮 Scanning your Soul...";
 
-  // Random local AI-style insight
-  const randomInsight = localInsights[Math.floor(Math.random() * localInsights.length)];
+  try {
+    // Simulate points (or integrate CARV API later)
+    soulPoints = Math.floor(Math.random() * 1200) + 100;
 
-  // Display results
-  soulPoints.innerText = `🌟 Soul Points: ${soulScore} pts`;
-  insightEl.innerText = `💫 Insight: ${randomInsight}`;
+    // Random insight
+    const insights = [
+      "The CARVverse feels your frequency rising.",
+      "Your data aura glows brighter with every scan.",
+      "The network whispers your digital essence.",
+      "AI senses harmony between your soul and chain.",
+      "You’re resonating with on-chain consciousness."
+    ];
+    insight = insights[Math.floor(Math.random() * insights.length)];
+
+    // Update results
+    document.getElementById("soulReport").innerHTML = `
+      <p><strong>🌌 Soul Points:</strong> ${soulPoints} pts</p>
+      <p>💡 <em>Insight:</em> ${insight}</p>
+    `;
+  } catch (err) {
+    document.getElementById("soulReport").textContent = "⚠️ Failed to scan soul.";
+    console.error(err);
+  }
 });
 
-// Share on X button
-shareBtn.addEventListener("click", () => {
-  const tweetText = encodeURIComponent(
-    `Just scanned my soul on CARV 🧠\nWallet: ${walletAddress}\nSoul Points: ${soulScore} pts\n${insightEl.innerText}\n\n@CashieCarv may reply with a deeper insight ✨`
+document.getElementById("shareButton").addEventListener("click", () => {
+  const shareText = encodeURIComponent(
+    `Just scanned my soul on CARV 🧠\n` +
+    `Soul Points: ${soulPoints} pts\n` +
+    `Insight: ${insight}\n` +
+    `⚡ Backpack: ${maskWallet(walletAddress)}\n\n` +
+    `Share on X and @CashieCarv may reply with a deeper public insight!`
   );
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
-  window.open(tweetUrl, "_blank");
+
+  const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}`;
+  window.open(shareUrl, "_blank");
 });
+
+function maskWallet(address) {
+  if (!address) return "Not connected";
+  return `${address.slice(0, 6)}...${address.slice(-4)}`;
+}
