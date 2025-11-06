@@ -7,7 +7,6 @@ const walletInfo = document.getElementById("walletInfo");
 const soulPoints = document.getElementById("soulPoints");
 const insightEl = document.getElementById("insight");
 const shareBtn = document.getElementById("shareX");
-const uidInput = document.getElementById("carvUid");
 
 let walletAddress = "";
 let soulScore = 0;
@@ -88,7 +87,6 @@ scanBtn.addEventListener("click", async () => {
     alert("Connect your wallet first!");
     return;
   }
-  const uid = (uidInput?.value || "").trim() || null;
 
   // Random soul score
   soulScore = Math.floor(Math.random() * 1000) + 100;
