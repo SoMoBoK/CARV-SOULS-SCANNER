@@ -1,131 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CARV Soul Scanner 🧠</title>
-    <style>
-      body {
-        background-color: #121826;
-        color: #ffffff;
-        font-family: "Poppins", sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CARV Soul Scanner 🧠</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0d1117;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-      .container {
-        background-color: #1e2433;
-        border-radius: 15px;
-        padding: 25px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        max-width: 380px;
-        width: 90%;
-      }
+    .container {
+      background: #161b22;
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      width: 360px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-      #carvLogo {
-        width: 90px;
-        margin-bottom: 15px;
-      }
+    .logo {
+      width: 90px;
+      margin-bottom: 1rem;
+    }
 
-      h2 {
-        margin-bottom: 10px;
-      }
+    h1 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px rgba(0, 162, 255, 0.8);
+    }
 
-      input {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 6px;
-        background: #2a3144;
-        color: white;
-        text-align: center;
-        margin-bottom: 10px;
-      }
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 1rem;
+      background-color: #21262d;
+      color: white;
+      text-align: center;
+    }
 
-      button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        margin: 6px;
-      }
+    button {
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      color: white;
+      margin: 0.5rem;
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+    }
 
-      #connectWallet {
-        background-color: #555b6e;
-        color: white;
-      }
+    .connect {
+      background-color: #444c56;
+    }
 
-      #scanSoul {
-        background-color: #007bff;
-        color: white;
-      }
+    .connect:hover {
+      background-color: #586069;
+    }
 
-      #shareButton {
-        background-color: #0d6efd;
-        color: white;
-        font-weight: bold;
-        padding: 12px;
-        margin-top: 10px;
-        width: 100%;
-        border-radius: 10px;
-      }
+    .scan {
+      background-color: #0070f3;
+    }
 
-      #walletDisplay {
-        margin: 8px 0;
-        color: #b0b6c2;
-        word-break: break-all;
-        background-color: #2a3144;
-        padding: 8px;
-        border-radius: 8px;
-        font-size: 0.85rem;
-        overflow-wrap: anywhere;
-      }
+    .scan:hover {
+      background-color: #0094ff;
+      box-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+    }
 
-      #soulReport {
-        background-color: #2a3144;
-        border-radius: 10px;
-        padding: 15px;
-        margin-top: 12px;
-        text-align: left;
-        font-size: 0.9rem;
-        word-wrap: break-word;
-      }
+    .share {
+      background: linear-gradient(90deg, #0070f3, #00bcd4);
+      width: 100%;
+      margin-top: 1rem;
+      box-shadow: 0 0 15px rgba(0, 162, 255, 0.6);
+    }
 
-      footer {
-        font-size: 0.8rem;
-        color: #a0a6b3;
-        margin-top: 15px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <img src="carv-logo.png" id="carvLogo" alt="CARV Logo" />
-      <h2>CARV Soul Scanner 🧠</h2>
+    .share:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 162, 255, 0.9);
+    }
 
-      <input id="carvUID" placeholder="Enter your CARV UID (optional)" />
+    p {
+      color: #e6edf3;
+    }
 
-      <div>
-        <button id="connectWallet">Connect Wallet</button>
-        <button id="scanSoul">Scan Soul</button>
-      </div>
+    .insight {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #aab6c4;
+    }
 
-      <div id="walletDisplay">Wallet: Not Connected</div>
+    .footer {
+      display: none; /* removed footer text */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="carv-logo.png" alt="CARV Logo" class="logo" />
+    <h1>CARV Soul Scanner 🧠</h1>
 
-      <div id="soulReport"></div>
+    <input type="text" id="carvUID" placeholder="Enter your CARV UID (optional)" />
+    <br />
+    <button class="connect" id="connectWallet">Connect Wallet</button>
+    <button class="scan" id="scanSoul">Scan Soul</button>
 
-      <button id="shareButton">
-        Share on X and @CashieCarv may reply on X with a deeper public insight
-      </button>
+    <p id="walletInfo"></p>
 
-      <footer>⚡ Powered by CARV × AI</footer>
+    <div id="soulReport">
+      <p id="soulPoints"></p>
+      <p id="insight" class="insight"></p>
     </div>
 
-    <script src="app.js"></script>
-  </body>
+    <button id="shareX" class="share">
+      Share on X and @CashieCarv may reply on X with a deeper public insight
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
 </html>
