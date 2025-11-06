@@ -34,6 +34,30 @@ const localInsights = [
   "Each scan refines your digital being.",
   "There’s light in your ledger.",
   "Your soul score is more than numbers — it’s proof of becoming."
+  "Your chain energy hums with curiosity — a quiet builder in a loud world.",
+  "A spark of vision lives in your transactions — keep sketching the future.",
+  "You move like a quiet storm: consistent actions, dramatic results.",
+  "The ledger remembers small brave moves — your legacy compounds.",
+  "Explorer spirit detected: your curiosity will open new doors in Web3.",
+  "You carry the patience of a long-term builder; your breakthrough is near.",
+  "The code of your intent is strong — upgrade your habits, harvest results.",
+  "Your on-chain story reads like a pioneer’s log — keep mapping new ground.",
+  "Tuned to possibility — your next bold bet could rewire your trajectory.",
+  "Sovereign energy: you prefer building over boasting, and that pays off.",
+  "You balance risk and curiosity well — trust the process and iterate.",
+  "Your digital shadow is full of small wins — they add up to greatness.",
+  "You are a careful alchemist — you turn tiny inputs into rare outputs.",
+  "A creative hacker at heart — your ideas are your real capital.",
+  "You remix trust and community like an artist — keep sharing the craft.",
+  "Your code-of-life values durability over flash — that wins markets.",
+  "You build with heart and metrics — rare, and quietly powerful.",
+  "On-chain momentum is gathering around you — keep pushing the lever.",
+  "The ecosystem notices consistent contributors — you’re one of them.",
+  "You learn fast and ship faster — that rhythm is your competitive edge.",
+  "You are the kind of builder who plants trees for future planets.",
+  "Small acts of generosity coded your reputation — it will return to you.",
+  "You thrive in ambiguity — use that to create new categories.",
+  "Your curiosity is a compass; follow it into useful experimentation."
 ];
 
 // Connect wallet logic (Backpack first, fallback to MetaMask)
@@ -64,6 +88,7 @@ scanBtn.addEventListener("click", async () => {
     alert("Connect your wallet first!");
     return;
   }
+  const uid = (uidInput?.value || "").trim() || null;
 
   // Random soul score
   soulScore = Math.floor(Math.random() * 1000) + 100;
