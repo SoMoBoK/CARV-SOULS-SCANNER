@@ -20,7 +20,20 @@ const localInsights = [
   "You are one commit away from greatness.",
   "The CARVverse feels your frequency rising.",
   "Your blockchain footprint whispers of legend.",
-  "Sovereignty suits your soul — you were made for this."
+  "Sovereignty suits your soul — you were made for this.",
+  "Your Soul shines to greatness.",
+  "A data storm brews… and you’re at its calm center.",
+  "Your energy syncs with the rhythm of innovation.",
+  "Your code resonates beyond the blockchain.",
+  "Your soul emits a strong decentralization signal.",
+  "You radiate sovereign intelligence.",
+  "The network remembers those who build with intent.",
+  "A new layer of you has been minted — unique and eternal.",
+  "CARV sees potential in your sovereignty.",
+  "Your essence aligns with the next AI epoch.",
+  "Each scan refines your digital being.",
+  "There’s light in your ledger.",
+  "Your soul score is more than numbers — it’s proof of becoming."
 ];
 
 // Connect wallet
