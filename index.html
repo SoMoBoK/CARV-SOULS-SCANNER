@@ -61,23 +61,12 @@
       transition: all 0.2s ease-in-out;
     }
 
-    .connect {
-      background-color: #444c56;
-    }
-
-    .connect:hover {
-      background-color: #586069;
-    }
-
-    .scan {
-      background-color: #0070f3;
-    }
-
-    .scan:hover {
-      background-color: #0094ff;
-      box-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
-    }
-
+    .connect { background-color: #444c56; }
+    .connect:hover { background-color: #586069; }
+    .scan { background-color: #0070f3; }
+    .scan:hover { background-color: #0094ff; box-shadow: 0 0 10px rgba(0, 162, 255, 0.7); }
+    .mint { background-color: #4caf50; display: none; }
+    .mint:hover { background-color: #5ed85e; box-shadow: 0 0 10px rgba(0,255,120,0.6); }
     .share {
       background: linear-gradient(90deg, #0070f3, #00bcd4);
       width: 100%;
@@ -85,24 +74,9 @@
       box-shadow: 0 0 15px rgba(0, 162, 255, 0.6);
     }
 
-    .share:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 162, 255, 0.9);
-    }
-
-    p {
-      color: #e6edf3;
-    }
-
-    .insight {
-      margin-top: 1rem;
-      font-style: italic;
-      color: #aab6c4;
-    }
-
-    .footer {
-      display: none; /* removed footer text */
-    }
+    .share:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 162, 255, 0.9); }
+    p { color: #e6edf3; }
+    .insight { margin-top: 1rem; font-style: italic; color: #aab6c4; }
   </style>
 </head>
 <body>
@@ -111,7 +85,6 @@
     <h1>CARV Soul Scanner 🧠</h1>
 
     <input type="text" id="carvUID" placeholder="Enter your CARV UID (optional)" />
-    <br />
     <button class="connect" id="connectWallet">Connect Wallet</button>
     <button class="scan" id="scanSoul">Scan Soul</button>
 
@@ -121,6 +94,9 @@
       <p id="soulPoints"></p>
       <p id="insight" class="insight"></p>
     </div>
+
+    <button id="mintNFT" class="mint">Mint Soul NFT 🪙</button>
+    <p id="mintStatus"></p>
 
     <button id="shareX" class="share">
       Share on X and @CashieCarv may reply on X with a deeper public insight
