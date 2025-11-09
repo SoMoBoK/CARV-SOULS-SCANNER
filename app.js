@@ -1,4 +1,4 @@
-// app.js — CARV Soul Scanner hybrid version + NFT Mint feature
+// app.js — CARV Soul Scanner + Live NFT Mint (Base Sepolia)
 const connectBtn = document.getElementById("connectWallet");
 const scanBtn = document.getElementById("scanSoul");
 const mintBtn = document.getElementById("mintNFT");
@@ -9,7 +9,16 @@ const shareBtn = document.getElementById("shareX");
 const mintStatus = document.getElementById("mintStatus");
 
 let walletAddress = "";
+let signer;
 let soulScore = 0;
+
+// Base Sepolia SoulNFT Contract
+const CONTRACT_ADDRESS = "0xEE6f5a683e6FF5560D690421aa9e4fe27E738bD1";
+
+// Minimal ABI for minting Soul NFTs (ERC721)
+const ABI = [
+  "function safeMint(address to, string memory uri) public",
+];
 
 // Randomized AI-style insights
 const localInsights = [
@@ -36,17 +45,19 @@ const localInsights = [
   "Your soul score is more than numbers — it’s proof of becoming."
 ];
 
-// Connect wallet
+// Connect wallet (Backpack or MetaMask)
 connectBtn.addEventListener("click", async () => {
   try {
     if (window.backpack) {
       const response = await window.backpack.connect();
       walletAddress = response.publicKey.toString();
-      walletInfo.innerText = `Wallet: ${shorten(walletAddress)}`;
+      walletInfo.innerText = `Wallet: ${shorten(walletAddress)} (Backpack)`;
     } else if (window.ethereum) {
-      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-      walletAddress = accounts[0];
-      walletInfo.innerText = `Wallet: ${shorten(walletAddress)}`;
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      signer = provider.getSigner();
+      walletAddress = await signer.getAddress();
+      walletInfo.innerText = `Wallet: ${shorten(walletAddress)} (MetaMask)`;
     } else {
       walletInfo.innerText = "No wallet found.";
       alert("Install Backpack or MetaMask.");
@@ -65,25 +76,40 @@ scanBtn.addEventListener("click", async () => {
   const randomInsight = localInsights[Math.floor(Math.random() * localInsights.length)];
   soulPoints.innerText = `🌟 Soul Points: ${soulScore}`;
   insightEl.innerText = `💫 Insight: ${randomInsight}`;
-  mintBtn.style.display = "inline-block"; // show mint button after scan
+  mintBtn.style.display = "inline-block"; // show mint button
 });
 
-// Mint NFT (demo simulation)
+// Mint NFT on Base Sepolia
 mintBtn.addEventListener("click", async () => {
-  mintStatus.innerText = "⏳ Minting your Soul NFT...";
-  mintBtn.disabled = true;
+  if (!signer) {
+    alert("Please connect your wallet first.");
+    return;
+  }
 
   try {
-    // Simulate mint transaction
-    await new Promise(res => setTimeout(res, 2000));
+    mintStatus.innerText = "⏳ Minting your Soul NFT on Base Sepolia...";
+    mintBtn.disabled = true;
 
-    // Here you’d integrate a real NFT minting smart contract
-    // e.g., via ethers.js interacting with a deployed contract
+    // Contract instance
+    const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
 
-    mintStatus.innerText = `✅ Soul NFT minted for ${shorten(walletAddress)} (${soulScore} pts)!`;
+    // Create dynamic metadata URI (you can host on IPFS or JSON later)
+    const metadata = {
+      name: `SoulNFT #${Math.floor(Math.random() * 9999)}`,
+      description: `Soul Points: ${soulScore} — ${insightEl.innerText}`,
+      attributes: [{ trait_type: "Soul Score", value: soulScore }],
+    };
+
+    const metadataURI = `data:application/json;base64,${btoa(JSON.stringify(metadata))}`;
+
+    // Send mint transaction
+    const tx = await contract.safeMint(walletAddress, metadataURI);
+    await tx.wait();
+
+    mintStatus.innerText = `✅ Soul NFT minted successfully!\nTX: ${tx.hash}`;
   } catch (err) {
     console.error(err);
-    mintStatus.innerText = "❌ Minting failed.";
+    mintStatus.innerText = "❌ Minting failed — check console or BaseScan.";
   }
 
   mintBtn.disabled = false;
