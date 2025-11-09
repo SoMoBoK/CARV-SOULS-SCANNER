@@ -65,7 +65,10 @@
     .connect:hover { background-color: #586069; }
     .scan { background-color: #0070f3; }
     .scan:hover { background-color: #0094ff; box-shadow: 0 0 10px rgba(0, 162, 255, 0.7); }
-    .mint { background-color: #4caf50; display: none; }
+    .mint {
+      background-color: #4caf50;
+      display: none;
+    }
     .mint:hover { background-color: #5ed85e; box-shadow: 0 0 10px rgba(0,255,120,0.6); }
     .share {
       background: linear-gradient(90deg, #0070f3, #00bcd4);
@@ -73,10 +76,11 @@
       margin-top: 1rem;
       box-shadow: 0 0 15px rgba(0, 162, 255, 0.6);
     }
-
     .share:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 162, 255, 0.9); }
+
     p { color: #e6edf3; }
     .insight { margin-top: 1rem; font-style: italic; color: #aab6c4; }
+    #mintStatus { font-size: 0.9rem; color: #00ffb7; margin-top: 0.6rem; }
   </style>
 </head>
 <body>
@@ -99,10 +103,12 @@
     <p id="mintStatus"></p>
 
     <button id="shareX" class="share">
-      Share on X and @CashieCarv may reply on X with a deeper public insight
+      Share on X and @CashieCarv may reply with a deeper public insight ✨
     </button>
   </div>
 
+  <!-- Ethers.js for blockchain interaction -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
