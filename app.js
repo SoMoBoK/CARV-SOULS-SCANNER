@@ -100,7 +100,7 @@ mintBtn.addEventListener("click", async () => {
       attributes: [{ trait_type: "Soul Score", value: soulScore }],
     };
 
-    const metadataURI = `data:application/json;base64,${btoa(JSON.stringify(metadata))}`;
+    const metadataURI = `data:application/json;base64,${btoa(unescape(encodeURIComponent(JSON.stringify(metadata))));
 
     // Send mint transaction
     const tx = await contract.safeMint(walletAddress, metadataURI);
