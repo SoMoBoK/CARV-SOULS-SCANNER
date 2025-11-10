@@ -25,6 +25,18 @@
       width: 760px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .banner {
+      background: linear-gradient(90deg, #0052ff, #00d4ff);
+      color: white;
+      padding: 0.6rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-shadow: 0 0 5px rgba(0,0,0,0.5);
     }
 
     .logo {
@@ -85,6 +97,10 @@
 </head>
 <body>
   <div class="container">
+    <div class="banner">
+      🚀 Minting on <b>Base Mainnet</b> — make sure your wallet is connected to the Base network.
+    </div>
+
     <img src="carv-logo.png" alt="CARV Logo" class="logo" />
     <h1>CARV Soul Scanner 🧠</h1>
 
@@ -93,6 +109,7 @@
     <button class="scan" id="scanSoul">Scan Soul</button>
 
     <p id="walletInfo"></p>
+    <p id="networkInfo"></p>
 
     <div id="soulReport">
       <p id="soulPoints"></p>
